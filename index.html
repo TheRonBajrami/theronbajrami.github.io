@@ -146,7 +146,7 @@ section{padding:44px 0}
 .tracks{border-top:1px solid var(--line)}
 .track{
   display:grid;grid-template-columns:48px 1fr auto;gap:16px;
-  padding:14px 8px;border-bottom:1px solid var(--line);
+  padding:9px 8px;border-bottom:1px solid var(--line);
   align-items:center;border-radius:8px;
   transition:background .15s;
 }
@@ -263,10 +263,11 @@ textarea.f-input{resize:vertical;min-height:110px}
 /* ---------- now playing bar ---------- */
 .nowbar{
   position:fixed;left:0;right:0;bottom:0;z-index:60;
-  background:rgba(249,249,251,.9);
-  backdrop-filter:saturate(180%) blur(20px);
-  -webkit-backdrop-filter:saturate(180%) blur(20px);
-  border-top:1px solid var(--line);
+  background:rgba(255,255,255,.6);
+  backdrop-filter:saturate(180%) blur(32px);
+  -webkit-backdrop-filter:saturate(180%) blur(32px);
+  border-top:1px solid rgba(0,0,0,.06);
+  box-shadow:0 -6px 24px rgba(0,0,0,.05);
 }
 .nowbar .inner{
   max-width:980px;margin:0 auto;padding:10px 24px;
@@ -275,6 +276,7 @@ textarea.f-input{resize:vertical;min-height:110px}
 .nowbar .art{
   width:44px;height:44px;border-radius:8px;flex:0 0 44px;
   background:#fff;border:1px solid var(--line);overflow:hidden;
+  box-shadow:0 2px 8px rgba(0,0,0,.12);
   display:flex;align-items:center;justify-content:center;
   color:#fff;font-weight:800;font-size:15px;
 }
