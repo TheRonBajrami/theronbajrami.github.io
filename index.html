@@ -57,15 +57,41 @@ header{
 }
 .nav-links a:hover{color:var(--text)}
 
-/* ---------- hero ---------- */
-.hero{padding:72px 0 40px}
+/* ---------- hero (artist page banner) ---------- */
+.hero{padding:24px 0 40px}
+.hero-banner{
+  position:relative;border-radius:16px;overflow:hidden;
+  height:clamp(240px,36vw,330px);
+  background:
+    radial-gradient(110% 120% at 88% -10%, #fb5c74 0%, transparent 55%),
+    radial-gradient(130% 130% at 8% 110%, #fa233b 0%, transparent 58%),
+    linear-gradient(160deg, #2b0c13 0%, #1c1c1e 100%);
+  display:flex;align-items:flex-end;
+}
+.hero-banner::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg, transparent 45%, rgba(0,0,0,.42) 100%);
+  pointer-events:none;
+}
+.hero-id{position:relative;z-index:1;padding:28px 32px;color:#fff}
 .hero .eyebrow{
-  font-size:13px;font-weight:600;color:var(--red);
-  text-transform:uppercase;letter-spacing:.02em;margin-bottom:8px;
+  font-size:13px;font-weight:600;color:rgba(255,255,255,.8);
+  text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;
 }
 .hero h1{
   font-size:clamp(40px,7vw,56px);font-weight:800;letter-spacing:-.03em;line-height:1.05;
 }
+.hero-play{
+  position:absolute;right:28px;bottom:28px;z-index:1;
+  width:52px;height:52px;border-radius:50%;
+  background:rgba(255,255,255,.22);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  color:#fff;display:flex;align-items:center;justify-content:center;
+  text-decoration:none;font-size:16px;
+  transition:transform .2s ease, background .2s ease;
+}
+.hero-play:hover{transform:scale(1.06);background:var(--red)}
+.hero-play svg{margin-left:2px}
 .hero .sub{
   margin-top:16px;font-size:19px;color:var(--text-2);max-width:640px;line-height:1.55;
 }
@@ -91,6 +117,7 @@ section{padding:44px 0}
 }
 .sec-head h2{font-size:24px;font-weight:700;letter-spacing:-.02em}
 .sec-head .more{font-size:14px;color:var(--red);text-decoration:none;font-weight:500}
+.sec-head .more::after{content:" \203A";font-weight:600}
 .sec-head .more:hover{text-decoration:underline}
 
 /* ---------- featured banner ---------- */
@@ -126,8 +153,14 @@ section{padding:44px 0}
 .track:hover{background:var(--bg-2)}
 .track .no{
   font-size:14px;color:var(--text-3);text-align:center;font-variant-numeric:tabular-nums;
+  position:relative;
 }
-.track:hover .no{color:var(--red)}
+.track:hover .no,.track:focus-visible .no{color:transparent}
+.track:hover .no::after,.track:focus-visible .no::after{
+  content:"\25B6";position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--red);font-size:10px;
+}
 .track .t-main .t-title{font-size:16px;font-weight:600;letter-spacing:-.01em}
 .track .t-main .t-title em{font-style:normal;color:var(--red);font-weight:600;font-size:11px;vertical-align:2px;margin-left:8px;border:1px solid currentColor;border-radius:4px;padding:1px 6px}
 .track .t-main .t-sub{font-size:14px;color:var(--text-2);margin-top:2px}
@@ -147,6 +180,17 @@ section{padding:44px 0}
   position:relative;overflow:hidden;
 }
 .album:hover .cover{transform:scale(1.025);box-shadow:0 10px 28px rgba(0,0,0,.16)}
+.album .cover::after{
+  content:"\25B6";position:absolute;right:12px;bottom:12px;
+  width:34px;height:34px;border-radius:50%;
+  background:rgba(255,255,255,.28);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  color:#fff;font-size:11px;
+  display:flex;align-items:center;justify-content:center;padding-left:2px;
+  opacity:0;transform:scale(.8);
+  transition:opacity .2s ease, transform .2s ease;
+}
+.album:hover .cover::after{opacity:1;transform:scale(1)}
 .album .cover .big{
   font-size:30px;font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1;
 }
@@ -231,7 +275,19 @@ textarea.f-input{resize:vertical;min-height:110px}
 .nowbar .meta{min-width:0}
 .nowbar .meta .np-t{font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .nowbar .meta .np-s{font-size:12.5px;color:var(--text-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.nowbar .bars{margin-left:auto;display:flex;align-items:flex-end;gap:3px;height:18px}
+.nowbar .np-prog{position:absolute;top:-1px;left:0;right:0;height:2px}
+.nowbar .np-prog i{display:block;height:100%;width:0;background:var(--red);animation:prog 240s linear infinite}
+@keyframes prog{from{width:0}to{width:100%}}
+.nowbar .np-btn{
+  margin-left:auto;border:none;cursor:pointer;
+  width:36px;height:36px;border-radius:50%;flex:0 0 36px;
+  background:none;color:var(--text);
+  display:flex;align-items:center;justify-content:center;
+  transition:background .15s;
+}
+.nowbar .np-btn:hover{background:rgba(0,0,0,.06)}
+.nowbar.paused .bars i,.nowbar.paused .np-prog i{animation-play-state:paused}
+.nowbar .bars{display:flex;align-items:flex-end;gap:3px;height:18px}
 .nowbar .bars i{
   width:3px;background:var(--red);border-radius:2px;
   animation:eq 1.1s ease-in-out infinite;
@@ -269,8 +325,15 @@ a:focus-visible,.pill:focus-visible,.track:focus-visible{outline:2px solid var(-
 
   <!-- HERO -->
   <div class="hero">
-    <div class="eyebrow">Software Engineer · Boston</div>
-    <h1>Ron Bajrami</h1>
+    <div class="hero-banner">
+      <div class="hero-id">
+        <div class="eyebrow">Software Engineer · Boston</div>
+        <h1>Ron Bajrami</h1>
+      </div>
+      <a class="hero-play" href="#projects" aria-label="Jump to projects">
+        <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M3 1.5l11 6.5-11 6.5z"/></svg>
+      </a>
+    </div>
     <p class="sub">CS student at Boston University, software engineering intern at <a href="#experience">Fidelity Investments</a>, and co-founder of <a href="https://apps.apple.com/us/app/wynr/id6757320926" target="_blank" rel="noopener">Wynr</a>, an iOS sports prediction app with 350+ paying subscribers.</p>
     <div class="actions">
       <a class="pill pill-red" href="#projects"><span class="play">&#9654;</span> View projects</a>
@@ -357,7 +420,7 @@ a:focus-visible,.pill:focus-visible,.track:focus-visible{outline:2px solid var(-
   <section id="projects">
     <div class="sec-head">
       <h2>Projects</h2>
-      <a class="more" href="https://github.com/TheRonBajrami" target="_blank" rel="noopener">See all on GitHub</a>
+      <a class="more" href="https://github.com/TheRonBajrami" target="_blank" rel="noopener">See All</a>
     </div>
     <div class="albums">
 
@@ -486,23 +549,60 @@ a:focus-visible,.pill:focus-visible,.track:focus-visible{outline:2px solid var(-
 </footer>
 
 <!-- NOW PLAYING -->
-<div class="nowbar" aria-hidden="true">
+<div class="nowbar" id="nowbar">
+  <div class="np-prog" aria-hidden="true"><i></i></div>
   <div class="inner">
-    <div class="art">F</div>
+    <div class="art" id="np-art">F</div>
     <div class="meta">
-      <div class="np-t">Software Engineering Intern</div>
-      <div class="np-s">Fidelity Investments · Jun 2026 to present</div>
+      <div class="np-t" id="np-title">Software Engineering Intern</div>
+      <div class="np-s" id="np-sub">Fidelity Investments · Jun 2026 · Present</div>
     </div>
-    <div class="bars"><i></i><i></i><i></i><i></i></div>
+    <button class="np-btn" id="np-play" aria-label="Pause">
+      <svg id="ic-pause" width="13" height="13" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><rect x="1.5" width="4" height="14" rx="1"/><rect x="8.5" width="4" height="14" rx="1"/></svg>
+      <svg id="ic-play" width="13" height="13" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true" style="display:none"><path d="M2.5 0.5l10.5 6.5-10.5 6.5z"/></svg>
+    </button>
+    <div class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
   </div>
 </div>
 
 <script>
-// expand/collapse experience rows like tracks
-document.querySelectorAll('.track').forEach(t=>{
+// expand/collapse experience rows like tracks, and "play" them in the mini-player
+const artGrads=[
+  'linear-gradient(140deg,#0a7d40,#69b47a)',
+  'linear-gradient(140deg,#4b1fa6,#8e44ec)',
+  'linear-gradient(140deg,#0a7d40,#69b47a)',
+  'linear-gradient(140deg,#7a1f2b,#e67e22)',
+  'linear-gradient(140deg,#101014,#5a5a66)'
+];
+const nowbar=document.getElementById('nowbar');
+const npPlayBtn=document.getElementById('np-play');
+const icPause=document.getElementById('ic-pause');
+const icPlay=document.getElementById('ic-play');
+
+function setPaused(paused){
+  nowbar.classList.toggle('paused', paused);
+  icPause.style.display=paused?'none':'block';
+  icPlay.style.display=paused?'block':'none';
+  npPlayBtn.setAttribute('aria-label', paused?'Play':'Pause');
+}
+npPlayBtn.addEventListener('click',()=>setPaused(!nowbar.classList.contains('paused')));
+
+document.querySelectorAll('.track').forEach((t,i)=>{
   const toggle=()=>{
+    const opening=!t.classList.contains('open');
     t.classList.toggle('open');
     t.setAttribute('aria-expanded', t.classList.contains('open'));
+    if(opening){
+      const title=t.querySelector('.t-title').childNodes[0].textContent.trim();
+      const sub=t.querySelector('.t-sub').textContent.split('·')[0].trim();
+      const time=t.querySelector('.t-time').textContent.trim();
+      document.getElementById('np-title').textContent=title;
+      document.getElementById('np-sub').textContent=sub+' · '+time;
+      const art=document.getElementById('np-art');
+      art.textContent=sub.charAt(0);
+      art.style.background=artGrads[i%artGrads.length];
+      setPaused(false);
+    }
   };
   t.addEventListener('click', toggle);
   t.addEventListener('keydown', e=>{
@@ -520,7 +620,6 @@ fetch('https://api.github.com/users/TheRonBajrami')
     document.getElementById('gh-since').textContent = new Date(u.created_at).getFullYear();
   })
   .catch(()=>{});
-});
 </script>
 </body>
 </html>
