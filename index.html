@@ -145,26 +145,32 @@ section{padding:44px 0}
 /* ---------- tracklist (experience) ---------- */
 .tracks{border-top:1px solid var(--line)}
 .track{
-  display:grid;grid-template-columns:28px 1fr auto;gap:18px;
-  padding:16px 8px;border-bottom:1px solid var(--line);
+  display:grid;grid-template-columns:48px 1fr auto;gap:16px;
+  padding:14px 8px;border-bottom:1px solid var(--line);
   align-items:center;border-radius:8px;
   transition:background .15s;
 }
 .track:hover{background:var(--bg-2)}
-.track .no{
-  font-size:14px;color:var(--text-3);text-align:center;font-variant-numeric:tabular-nums;
-  position:relative;
+.track .t-cover{
+  width:48px;height:48px;border-radius:10px;overflow:hidden;
+  background:#fff;border:1px solid var(--line);
+  position:relative;align-self:start;
 }
-.track:hover .no,.track:focus-visible .no{color:transparent}
-.track:hover .no::after,.track:focus-visible .no::after{
+.track .t-cover img{width:100%;height:100%;object-fit:contain;padding:6px;display:block}
+.track .t-cover.full img{padding:0;object-fit:cover}
+.track:hover .t-cover::after,.track:focus-visible .t-cover::after{
   content:"\25B6";position:absolute;inset:0;
-  display:flex;align-items:center;justify-content:center;
-  color:var(--red);font-size:10px;
+  background:rgba(0,0,0,.38);color:#fff;font-size:11px;
+  display:flex;align-items:center;justify-content:center;padding-left:2px;
 }
 .track .t-main .t-title{font-size:16px;font-weight:600;letter-spacing:-.01em}
 .track .t-main .t-title em{font-style:normal;color:var(--red);font-weight:600;font-size:11px;vertical-align:2px;margin-left:8px;border:1px solid currentColor;border-radius:4px;padding:1px 6px}
 .track .t-main .t-sub{font-size:14px;color:var(--text-2);margin-top:2px}
-.track .t-main .t-desc{font-size:14px;color:var(--text-2);margin-top:8px;max-width:640px;line-height:1.5;display:none}
+.track .t-main .t-desc{
+  display:none;margin:10px 0 2px;padding-left:18px;max-width:640px;
+}
+.track .t-desc li{font-size:14px;color:var(--text-2);line-height:1.5;margin-top:6px}
+.track .t-desc li::marker{color:var(--red)}
 .track.open .t-desc{display:block}
 .track .t-time{font-size:13px;color:var(--text-3);font-variant-numeric:tabular-nums;white-space:nowrap}
 .track{cursor:pointer}
@@ -268,10 +274,12 @@ textarea.f-input{resize:vertical;min-height:110px}
 }
 .nowbar .art{
   width:44px;height:44px;border-radius:8px;flex:0 0 44px;
-  background:linear-gradient(140deg,#0a7d40,#69b47a);
+  background:#fff;border:1px solid var(--line);overflow:hidden;
   display:flex;align-items:center;justify-content:center;
   color:#fff;font-weight:800;font-size:15px;
 }
+.nowbar .art img{width:100%;height:100%;object-fit:contain;padding:5px;display:block}
+.nowbar .art img.full{padding:0;object-fit:cover}
 .nowbar .meta{min-width:0}
 .nowbar .meta .np-t{font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .nowbar .meta .np-s{font-size:12.5px;color:var(--text-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -363,51 +371,69 @@ a:focus-visible,.pill:focus-visible,.track:focus-visible{outline:2px solid var(-
     <div class="tracks">
 
       <div class="track open" tabindex="0" role="button" aria-expanded="true">
-        <div class="no">1</div>
+        <div class="t-cover"><img src="assets/fidelity.png" alt="Fidelity Investments logo"></div>
         <div class="t-main">
           <div class="t-title">Software Engineering Intern <em>NOW</em></div>
           <div class="t-sub">Fidelity Investments · Returning intern</div>
-          <div class="t-desc">Building role-based access controls and an audit log for an internal hiring portal in React, TypeScript, and Java, securing access across 5 user roles for 40+ recruiters. Replaced spreadsheet-based recruiting with a centralized platform, cutting review time 30% for a 12-person team. Automated UI and API tests in a Jenkins pipeline at 90% coverage.</div>
+          <ul class="t-desc">
+            <li>Building role-based access controls and an audit log for an internal hiring portal in React, TypeScript, and Java, securing access across 5 user roles for 40+ recruiters.</li>
+            <li>Replaced spreadsheet-based recruiting with a centralized platform, cutting review time 30% for a 12-person team.</li>
+            <li>Automated UI and API tests in a Jenkins pipeline at 90% coverage.</li>
+          </ul>
         </div>
         <div class="t-time">Jun 2026 · Present</div>
       </div>
 
       <div class="track" tabindex="0" role="button" aria-expanded="false">
-        <div class="no">2</div>
+        <div class="t-cover full"><img src="assets/wynr.png" alt="Wynr app icon"></div>
         <div class="t-main">
           <div class="t-title">Co-Founder</div>
           <div class="t-sub">Wynr · Boston, MA</div>
-          <div class="t-desc">Co-founded a native Swift iOS sports prediction and bet tracking app. Built Python data pipelines and Poisson regression models processing 10,000+ sportsbook odds daily, plus a fault-tolerant pipeline that keeps predictions live even when an odds feed fails. 350+ paying subscribers and a 5,000+ person waitlist in week one.</div>
+          <ul class="t-desc">
+            <li>Co-founded a native Swift iOS sports prediction and bet tracking app.</li>
+            <li>Built Python data pipelines and Poisson regression models processing 10,000+ sportsbook odds daily.</li>
+            <li>Designed a fault-tolerant pipeline that keeps predictions live even when an odds feed fails.</li>
+            <li>350+ paying subscribers and a 5,000+ person waitlist in week one.</li>
+          </ul>
         </div>
         <div class="t-time">Oct 2025 · Present</div>
       </div>
 
       <div class="track" tabindex="0" role="button" aria-expanded="false">
-        <div class="no">3</div>
+        <div class="t-cover"><img src="assets/fidelity.png" alt="Fidelity Investments logo"></div>
         <div class="t-main">
           <div class="t-title">Software Engineering Intern</div>
           <div class="t-sub">Fidelity Investments · Merrimack, NH</div>
-          <div class="t-desc">Designed an accessibility dashboard in React, Recharts, and Material UI ranking 500+ scanner-detected issues by severity, cutting triage from hours to minutes. Built a reusable React data-loading and error-handling library published to Fidelity's internal registry and adopted by 8 product teams.</div>
+          <ul class="t-desc">
+            <li>Designed an accessibility dashboard in React, Recharts, and Material UI ranking 500+ scanner-detected issues by severity, cutting triage from hours to minutes.</li>
+            <li>Built a reusable React data-loading and error-handling library published to Fidelity's internal registry and adopted by 8 product teams.</li>
+          </ul>
         </div>
         <div class="t-time">Summer 2025</div>
       </div>
 
       <div class="track" tabindex="0" role="button" aria-expanded="false">
-        <div class="no">4</div>
+        <div class="t-cover"><img src="assets/netflix.png" alt="Netflix logo"></div>
         <div class="t-main">
           <div class="t-title">Software Engineering Fellow</div>
           <div class="t-sub">Netflix · 1 of 40 selected nationally</div>
-          <div class="t-desc">Advanced program covering data structures, algorithms, and system design.</div>
+          <ul class="t-desc">
+            <li>Selected as 1 of 40 fellows nationally.</li>
+            <li>Advanced program covering data structures, algorithms, and system design.</li>
+          </ul>
         </div>
         <div class="t-time">2025</div>
       </div>
 
       <div class="track" tabindex="0" role="button" aria-expanded="false">
-        <div class="no">5</div>
+        <div class="t-cover"><img src="assets/umass.png" alt="UMass Amherst logo"></div>
         <div class="t-main">
           <div class="t-title">Software Developer</div>
           <div class="t-sub">UMass Amherst Robotics Team</div>
-          <div class="t-desc">Cut the robot's obstacle-reaction time from 480ms to 330ms by profiling and optimizing the C++ and ROS motion-control path. Built autonomous navigation fusing OpenCV camera vision with LiDAR, detecting obstacles within 15cm in real time.</div>
+          <ul class="t-desc">
+            <li>Cut the robot's obstacle-reaction time from 480ms to 330ms by profiling and optimizing the C++ and ROS motion-control path.</li>
+            <li>Built autonomous navigation fusing OpenCV camera vision with LiDAR, detecting obstacles within 15cm in real time.</li>
+          </ul>
         </div>
         <div class="t-time">Fall 2024</div>
       </div>
@@ -552,7 +578,7 @@ a:focus-visible,.pill:focus-visible,.track:focus-visible{outline:2px solid var(-
 <div class="nowbar" id="nowbar">
   <div class="np-prog" aria-hidden="true"><i></i></div>
   <div class="inner">
-    <div class="art" id="np-art">F</div>
+    <div class="art" id="np-art"><img src="assets/fidelity.png" alt=""></div>
     <div class="meta">
       <div class="np-t" id="np-title">Software Engineering Intern</div>
       <div class="np-s" id="np-sub">Fidelity Investments · Jun 2026 · Present</div>
@@ -567,13 +593,6 @@ a:focus-visible,.pill:focus-visible,.track:focus-visible{outline:2px solid var(-
 
 <script>
 // expand/collapse experience rows like tracks, and "play" them in the mini-player
-const artGrads=[
-  'linear-gradient(140deg,#0a7d40,#69b47a)',
-  'linear-gradient(140deg,#4b1fa6,#8e44ec)',
-  'linear-gradient(140deg,#0a7d40,#69b47a)',
-  'linear-gradient(140deg,#7a1f2b,#e67e22)',
-  'linear-gradient(140deg,#101014,#5a5a66)'
-];
 const nowbar=document.getElementById('nowbar');
 const npPlayBtn=document.getElementById('np-play');
 const icPause=document.getElementById('ic-pause');
@@ -587,7 +606,7 @@ function setPaused(paused){
 }
 npPlayBtn.addEventListener('click',()=>setPaused(!nowbar.classList.contains('paused')));
 
-document.querySelectorAll('.track').forEach((t,i)=>{
+document.querySelectorAll('.track').forEach(t=>{
   const toggle=()=>{
     const opening=!t.classList.contains('open');
     t.classList.toggle('open');
@@ -599,8 +618,15 @@ document.querySelectorAll('.track').forEach((t,i)=>{
       document.getElementById('np-title').textContent=title;
       document.getElementById('np-sub').textContent=sub+' · '+time;
       const art=document.getElementById('np-art');
-      art.textContent=sub.charAt(0);
-      art.style.background=artGrads[i%artGrads.length];
+      const cover=t.querySelector('.t-cover');
+      const img=cover&&cover.querySelector('img');
+      if(img){
+        const clone=img.cloneNode();
+        clone.className=cover.classList.contains('full')?'full':'';
+        art.replaceChildren(clone);
+      }else{
+        art.textContent=sub.charAt(0);
+      }
       setPaused(false);
     }
   };
