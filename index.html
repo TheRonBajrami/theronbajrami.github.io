@@ -197,8 +197,13 @@ section{padding:44px 0}
   transition:opacity .2s ease, transform .2s ease;
 }
 .album:hover .cover::after{opacity:1;transform:scale(1)}
-.album .cover .big{
-  font-size:30px;font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1;
+.album .cover.art{align-items:center;justify-content:center}
+.album .cover.art svg{
+  width:42%;height:auto;color:#fff;
+  filter:drop-shadow(0 6px 14px rgba(0,0,0,.25));
+}
+.album .cover .art-img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
 }
 .cover-wynr{background:linear-gradient(160deg,#4b1fa6,#8e44ec 60%,#c084fc)}
 .cover-dua{background:linear-gradient(160deg,#0c8ee8,#7fd4f5 70%,#d9f1fb)}
@@ -215,20 +220,20 @@ section{padding:44px 0}
   background:var(--bg-2);border-radius:var(--radius);padding:24px 26px;
 }
 .gh-chart{width:100%;height:auto;display:block;border-radius:6px}
-.gh-stats{display:flex;gap:48px;margin-top:20px;flex-wrap:wrap}
-.gh-stat .g-n{font-size:22px;font-weight:700;letter-spacing:-.01em;display:block;font-variant-numeric:tabular-nums}
-.gh-stat .g-l{font-size:12.5px;color:var(--text-2)}
 
 /* ---------- skills ---------- */
+.skill-group+.skill-group{margin-top:24px}
+.sg-label{
+  font-size:12px;font-weight:600;color:var(--text-3);
+  text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;
+}
 .genres{display:flex;flex-wrap:wrap;gap:10px}
 .genre{
   font-size:14px;font-weight:500;
   background:var(--bg-2);border-radius:999px;padding:8px 18px;
   transition:all .15s;
 }
-.genre.hot{background:#fa233b14;color:var(--red)}
 .genre:hover{background:#ededf0}
-.genre.hot:hover{background:#fa233b22}
 
 /* ---------- about / education ---------- */
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
@@ -241,7 +246,7 @@ section{padding:44px 0}
 @media(max-width:700px){.about-grid{grid-template-columns:1fr}}
 
 /* ---------- contact ---------- */
-.contact-sec{text-align:center;padding:64px 0 80px}
+.contact-sec{text-align:center;padding:56px 0 36px}
 .contact-sec h2{font-size:clamp(28px,5vw,40px);font-weight:800;letter-spacing:-.02em}
 .contact-sec p{color:var(--text-2);margin-top:10px;font-size:17px}
 .contact-sec .actions{display:flex;gap:12px;justify-content:center;margin-top:26px;flex-wrap:wrap}
@@ -309,7 +314,7 @@ textarea.f-input{resize:vertical;min-height:110px}
 @keyframes eq{0%,100%{transform:scaleY(.55)}50%{transform:scaleY(1)}}
 
 footer{
-  padding:26px 0;color:var(--text-3);font-size:12.5px;
+  padding:18px 0;color:var(--text-3);font-size:12.5px;
   border-top:1px solid var(--line);
 }
 footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
@@ -378,7 +383,7 @@ a:focus-visible,.pill:focus-visible,.track:focus-visible{outline:2px solid var(-
           <div class="t-title">Software Engineering Intern <em>NOW</em></div>
           <div class="t-sub">Fidelity Investments · Merrimack, NH</div>
           <ul class="t-desc">
-            <li>Corporate Services Technology.</li>
+            <li>Corporate Services Technology</li>
           </ul>
         </div>
         <div class="t-time">Jun 2026 · Present</div>
@@ -390,9 +395,9 @@ a:focus-visible,.pill:focus-visible,.track:focus-visible{outline:2px solid var(-
           <div class="t-title">Co-Founder</div>
           <div class="t-sub">Wynr · Boston, MA</div>
           <ul class="t-desc">
-            <li>Co-founded Wynr, a native Swift iOS sports prediction and bet tracking app, acquiring 350 paying subscribers and a 5,000+ user waitlist within one week of App Store launch.</li>
-            <li>Built Python data pipelines and Poisson regression models processing 10,000+ sportsbook odds daily, backtesting predictions against historical outcomes to surface positive expected value bets.</li>
-            <li>Engineered a fault-tolerant pipeline aggregating live odds from multiple sportsbooks, isolating each source so a single failed feed never disrupts predictions.</li>
+            <li>Co-founded Wynr, a native Swift iOS sports prediction and bet tracking app, acquiring 350 paying subscribers and a 5,000+ user waitlist within one week of App Store launch</li>
+            <li>Built Python data pipelines and Poisson regression models processing 10,000+ sportsbook odds daily, backtesting predictions against historical outcomes to surface positive expected value bets</li>
+            <li>Engineered a fault-tolerant pipeline aggregating live odds from multiple sportsbooks, isolating each source so a single failed feed never disrupts predictions</li>
           </ul>
         </div>
         <div class="t-time">Oct 2025 · Present</div>
@@ -404,8 +409,8 @@ a:focus-visible,.pill:focus-visible,.track:focus-visible{outline:2px solid var(-
           <div class="t-title">Software Engineering Intern</div>
           <div class="t-sub">Fidelity Investments · Merrimack, NH</div>
           <ul class="t-desc">
-            <li>Designed an accessibility dashboard in React, Recharts, and Material UI that ranked 500+ scanner-detected issues by severity, cutting issue triage time for engineering teams from hours to minutes.</li>
-            <li>Built a reusable React data-loading and error-handling library, published to Fidelity's internal package registry and adopted by 8 product teams.</li>
+            <li>Designed an accessibility dashboard in React, Recharts, and Material UI that ranked 500+ scanner-detected issues by severity, cutting issue triage time for engineering teams from hours to minutes</li>
+            <li>Built a reusable React data-loading and error-handling library, published to Fidelity's internal package registry and adopted by 8 product teams</li>
           </ul>
         </div>
         <div class="t-time">Jun 2025 · Aug 2025</div>
@@ -417,8 +422,8 @@ a:focus-visible,.pill:focus-visible,.track:focus-visible{outline:2px solid var(-
           <div class="t-title">Software Engineering Fellow</div>
           <div class="t-sub">Netflix · 1 of 40 selected nationally</div>
           <ul class="t-desc">
-            <li>Selected as 1 of 40 fellows nationally.</li>
-            <li>Advanced program covering data structures, algorithms, and system design.</li>
+            <li>Selected as 1 of 40 fellows nationally</li>
+            <li>Advanced program covering data structures, algorithms, and system design</li>
           </ul>
         </div>
         <div class="t-time">2025</div>
@@ -430,8 +435,8 @@ a:focus-visible,.pill:focus-visible,.track:focus-visible{outline:2px solid var(-
           <div class="t-title">Software Developer</div>
           <div class="t-sub">UMass Amherst Robotics Team</div>
           <ul class="t-desc">
-            <li>Reduced the robot's obstacle-reaction time from 480ms to 330ms under real-time constraints by profiling and optimizing the C++ and ROS motion-control path.</li>
-            <li>Developed an autonomous navigation system fusing OpenCV camera vision with LiDAR, detecting obstacles within 15cm in real time.</li>
+            <li>Reduced the robot's obstacle-reaction time from 480ms to 330ms under real-time constraints by profiling and optimizing the C++ and ROS motion-control path</li>
+            <li>Developed an autonomous navigation system fusing OpenCV camera vision with LiDAR, detecting obstacles within 15cm in real time</li>
           </ul>
         </div>
         <div class="t-time">Aug 2024 · Dec 2024</div>
@@ -450,25 +455,42 @@ a:focus-visible,.pill:focus-visible,.track:focus-visible{outline:2px solid var(-
     <div class="albums">
 
       <a class="album" href="https://apps.apple.com/us/app/wynr/id6757320926" target="_blank" rel="noopener">
-        <div class="cover cover-wynr"><span class="big">W</span></div>
+        <div class="cover cover-wynr"><img class="art-img" src="assets/wynr.png" alt="Wynr app icon"></div>
         <div class="a-title">Wynr</div>
         <div class="a-sub">iOS · Swift · Live</div>
       </a>
 
       <a class="album" href="https://duagelato.com" target="_blank" rel="noopener">
-        <div class="cover cover-dua"><span class="big">Dua</span></div>
+        <div class="cover cover-dua art">
+          <svg viewBox="0 0 24 24" fill="rgba(255,255,255,.95)" aria-hidden="true">
+            <circle cx="8.4" cy="8.6" r="3.3"/>
+            <circle cx="15.6" cy="8.6" r="3.3"/>
+            <circle cx="12" cy="6.2" r="3.5"/>
+            <path d="M5.4 11.4h13.2L12 22.6z"/>
+          </svg>
+        </div>
         <div class="a-title">Dua Gelato</div>
         <div class="a-sub">React · Express · MongoDB</div>
       </a>
 
       <a class="album" href="https://hackumass.com" target="_blank" rel="noopener">
-        <div class="cover cover-hack"><span class="big">HU</span></div>
+        <div class="cover cover-hack art">
+          <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.95)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M7.5 6.5 2 12l5.5 5.5"/>
+            <path d="M16.5 6.5 22 12l-5.5 5.5"/>
+            <path d="M13.8 4.5l-3.6 15"/>
+          </svg>
+        </div>
         <div class="a-title">HackUMass</div>
         <div class="a-sub">1,200+ participants</div>
       </a>
 
       <a class="album" href="https://github.com/TheRonBajrami" target="_blank" rel="noopener">
-        <div class="cover cover-film"><span class="big">FF</span></div>
+        <div class="cover cover-film art">
+          <svg viewBox="0 0 24 24" fill="rgba(255,255,255,.92)" fill-rule="evenodd" aria-hidden="true">
+            <path d="M2 4h20v16H2zM4.3 6.2h2.2v2.2H4.3zM4.3 10.9h2.2v2.2H4.3zM4.3 15.6h2.2v2.2H4.3zM17.5 6.2h2.2v2.2h-2.2zM17.5 10.9h2.2v2.2h-2.2zM17.5 15.6h2.2v2.2h-2.2zM8.8 6.2h6.4v5.2H8.8zM8.8 12.6h6.4v5.2H8.8z"/>
+          </svg>
+        </div>
         <div class="a-title">Film Flow</div>
         <div class="a-sub">React · TMDB API</div>
       </a>
@@ -484,11 +506,6 @@ a:focus-visible,.pill:focus-visible,.track:focus-visible{outline:2px solid var(-
     </div>
     <div class="gh-card">
       <img class="gh-chart" src="https://ghchart.rshah.org/fa233b/TheRonBajrami" alt="GitHub contribution graph for TheRonBajrami" loading="lazy">
-      <div class="gh-stats" id="gh-stats">
-        <div class="gh-stat"><span class="g-n" id="gh-repos">–</span><span class="g-l">Public repos</span></div>
-        <div class="gh-stat"><span class="g-n" id="gh-followers">–</span><span class="g-l">Followers</span></div>
-        <div class="gh-stat"><span class="g-n" id="gh-since">–</span><span class="g-l">On GitHub since</span></div>
-      </div>
     </div>
   </section>
 
@@ -497,29 +514,59 @@ a:focus-visible,.pill:focus-visible,.track:focus-visible{outline:2px solid var(-
     <div class="sec-head">
       <h2>Skills</h2>
     </div>
-    <div class="genres">
-      <span class="genre hot">Python</span>
-      <span class="genre hot">TypeScript</span>
-      <span class="genre hot">Java</span>
-      <span class="genre hot">Swift</span>
-      <span class="genre">C++</span>
-      <span class="genre">SQL</span>
-      <span class="genre hot">React</span>
-      <span class="genre">Next.js</span>
-      <span class="genre">Node.js</span>
-      <span class="genre">Express</span>
-      <span class="genre">PostgreSQL</span>
-      <span class="genre">MongoDB</span>
-      <span class="genre">Supabase</span>
-      <span class="genre">Pandas</span>
-      <span class="genre">NumPy</span>
-      <span class="genre hot">AWS</span>
-      <span class="genre">Docker</span>
-      <span class="genre">Kubernetes</span>
-      <span class="genre">Jenkins</span>
-      <span class="genre">CI/CD</span>
-      <span class="genre">Git</span>
-      <span class="genre">Linux</span>
+    <div class="skill-group">
+      <div class="sg-label">Languages</div>
+      <div class="genres">
+        <span class="genre">Python</span>
+        <span class="genre">TypeScript</span>
+        <span class="genre">Java</span>
+        <span class="genre">C++</span>
+        <span class="genre">Swift</span>
+        <span class="genre">SQL</span>
+        <span class="genre">JavaScript</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="sg-label">Frameworks</div>
+      <div class="genres">
+        <span class="genre">React</span>
+        <span class="genre">Next.js</span>
+        <span class="genre">Node.js</span>
+        <span class="genre">Express</span>
+        <span class="genre">REST APIs</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="sg-label">AI / ML</div>
+      <div class="genres">
+        <span class="genre">LLM Evaluation</span>
+        <span class="genre">Data Modeling</span>
+        <span class="genre">Pandas</span>
+        <span class="genre">NumPy</span>
+        <span class="genre">Jupyter</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="sg-label">Data</div>
+      <div class="genres">
+        <span class="genre">PostgreSQL</span>
+        <span class="genre">MySQL</span>
+        <span class="genre">MongoDB</span>
+        <span class="genre">Supabase</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="sg-label">Tools</div>
+      <div class="genres">
+        <span class="genre">Git</span>
+        <span class="genre">Docker</span>
+        <span class="genre">Kubernetes</span>
+        <span class="genre">AWS</span>
+        <span class="genre">CI/CD</span>
+        <span class="genre">Jenkins</span>
+        <span class="genre">Xcode</span>
+        <span class="genre">Linux</span>
+      </div>
     </div>
   </section>
 
@@ -532,7 +579,7 @@ a:focus-visible,.pill:focus-visible,.track:focus-visible{outline:2px solid var(-
       <div class="about-card">
         <h3>Boston University</h3>
         <div class="a-sub">BA in Computer Science · May 2027</div>
-        <p>First-generation college student and Pi Kappa Alpha, where we raised $80,000 for the Children's Glaucoma Foundation.</p>
+        <p>First-generation college student and a brother of Pi Kappa Alpha, where we raised $80,000 for the Children's Glaucoma Foundation.</p>
       </div>
       <div class="about-card">
         <h3>Off the clock</h3>
@@ -635,16 +682,6 @@ document.querySelectorAll('.track').forEach(t=>{
   });
 });
 
-// live GitHub stats
-fetch('https://api.github.com/users/TheRonBajrami')
-  .then(r=>r.ok?r.json():null)
-  .then(u=>{
-    if(!u) return;
-    document.getElementById('gh-repos').textContent = u.public_repos;
-    document.getElementById('gh-followers').textContent = u.followers;
-    document.getElementById('gh-since').textContent = new Date(u.created_at).getFullYear();
-  })
-  .catch(()=>{});
 </script>
 </body>
 </html>
