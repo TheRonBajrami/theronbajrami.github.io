@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Ron Bajrami</title>
-<meta name="description" content="Ron Bajrami. Computer Science at Boston University. Software Engineer Associate at Fidelity Investments starting July 2027.">
+<meta name="description" content="Ron Bajrami. Computer Science at Boston University. Two-time software engineering intern at Fidelity Investments and co-founder of Wynr.">
 <meta name="theme-color" content="#000000">
 <meta name="color-scheme" content="dark">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%23000'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='-apple-system,Helvetica,Arial,sans-serif' font-size='31' font-weight='800' letter-spacing='-2' fill='%23fff'%3Erb%3C/text%3E%3C/svg%3E">
@@ -282,25 +282,7 @@ img{display:block}
 .pill:hover{background:var(--fill-2)}
 
 /* ---------- contact ---------- */
-.contact-grid{display:grid;grid-template-columns:minmax(0, 5fr) minmax(0, 6fr);gap:20px;align-items:start}
-@media (max-width:820px){.contact-grid{grid-template-columns:1fr}}
-.links-list{list-style:none;padding:8px}
-.links-list a{
-  display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:18px;text-decoration:none;
-  transition:background .2s;
-}
-.links-list a:hover{background:var(--fill)}
-.links-list .l-k{font-size:13px;font-weight:600;color:var(--text-3);width:76px;flex:none}
-.links-list .l-v{font-size:16px;font-weight:600;min-width:0;overflow-wrap:anywhere}
-.links-list svg{margin-left:auto;flex:none;color:var(--text-3);transition:color .2s, transform .3s var(--ease)}
-.links-list a:hover svg{color:var(--accent);transform:translate(2px, -2px)}
-@media (max-width:600px){
-  .links-list a{display:grid;grid-template-columns:minmax(0, 1fr) auto;row-gap:2px;padding:12px 14px}
-  .links-list .l-k{width:auto}
-  .links-list .l-v{grid-column:1;font-size:15.5px}
-  .links-list svg{grid-column:2;grid-row:1 / 3}
-}
-.c-form{display:flex;flex-direction:column;gap:10px}
+.c-form{display:flex;flex-direction:column;gap:10px;max-width:760px}
 .f-row{display:flex;gap:10px}
 @media (max-width:520px){.f-row{flex-direction:column}}
 .f-input{
@@ -311,7 +293,10 @@ img{display:block}
 .f-input::placeholder{color:var(--text-3)}
 .f-input:focus{outline:none;background:rgba(255,255,255,.09);box-shadow:inset 0 0 0 1.5px var(--accent)}
 textarea.f-input{resize:vertical;min-height:132px}
-.c-form .btn{align-self:flex-start;margin-top:4px}
+.f-actions{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px 20px;margin-top:4px}
+.f-alt{font-size:14px;color:var(--text-3)}
+.f-alt a{color:var(--accent);font-weight:600;text-decoration:none}
+.f-alt a:hover{text-decoration:underline}
 
 footer{margin-top:clamp(64px, 9vw, 104px);padding:20px 0;border-top:1px solid var(--line);color:var(--text-3);font-size:13px}
 footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
@@ -324,7 +309,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
   display:flex;align-items:center;gap:12px;padding:8px;border-radius:24px;
 }
 .np-art{flex:none;width:48px;height:48px;border-radius:13px;background:#fff;display:grid;place-items:center;box-shadow:0 4px 14px rgba(0,0,0,.4)}
-.np-art img{width:30px;height:30px;filter:grayscale(1)}
+.np-art.mono{color:#000;font-size:19px;font-weight:800;letter-spacing:-.06em;padding-bottom:2px}
 .np-meta{flex:1;min-width:0;display:flex;flex-direction:column}
 .np-t,.np-s{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .np-t{font-size:15px;font-weight:700;letter-spacing:-.015em}
@@ -438,7 +423,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
     <div class="wrap hero-inner">
       <p class="kicker">software engineer · boston, ma</p>
       <h1 class="wordmark"><span>Ron</span> <span>Bajrami</span></h1>
-      <p class="lede">Computer Science at <strong>Boston University</strong>. Software Engineer Associate at <strong>Fidelity Investments</strong> starting July 2027.</p>
+      <p class="lede">Computer Science at <strong>Boston University</strong>. Two&#8209;time software engineering intern at <strong>Fidelity Investments</strong> and co-founder of <strong>Wynr</strong>.</p>
       <div class="actions">
         <a class="btn btn-primary" href="#experience">view experience</a>
         <a class="btn btn-glass glass" href="https://www.linkedin.com/in/ronbajrami" target="_blank" rel="noopener">
@@ -687,25 +672,20 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
       <div class="sec-head">
         <h2>Contact</h2>
       </div>
-      <div class="contact-grid">
-        <ul class="links-list panel glass">
-          <li><a href="mailto:ronbajrami2005@gmail.com"><span class="l-k">email</span><span class="l-v">ronbajrami2005@gmail.com</span><svg width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M3.5 8.5l5-5M4.5 3.5h4v4"/></svg></a></li>
-          <li><a href="https://ronbajrami.com"><span class="l-k">web</span><span class="l-v">ronbajrami.com</span><svg width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M3.5 8.5l5-5M4.5 3.5h4v4"/></svg></a></li>
-          <li><a href="https://www.linkedin.com/in/ronbajrami" target="_blank" rel="noopener"><span class="l-k">linkedin</span><span class="l-v">linkedin.com/in/ronbajrami</span><svg width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M3.5 8.5l5-5M4.5 3.5h4v4"/></svg></a></li>
-          <li><a href="https://github.com/TheRonBajrami" target="_blank" rel="noopener"><span class="l-k">github</span><span class="l-v">github.com/TheRonBajrami</span><svg width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M3.5 8.5l5-5M4.5 3.5h4v4"/></svg></a></li>
-        </ul>
-        <form class="c-form panel glass" action="https://formsubmit.co/ronbajrami2005@gmail.com" method="POST">
-          <input type="hidden" name="_subject" value="New message from ronbajrami.com">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
-          <div class="f-row">
-            <input class="f-input" type="text" name="name" placeholder="Name" aria-label="Name" autocomplete="name" required>
-            <input class="f-input" type="email" name="email" placeholder="Email" aria-label="Email" autocomplete="email" required>
-          </div>
-          <textarea class="f-input" name="message" rows="4" placeholder="Message" aria-label="Message" required></textarea>
+      <form class="c-form panel glass" action="https://formsubmit.co/ronbajrami2005@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="New message from ronbajrami.com">
+        <input type="hidden" name="_blacklist" value="crypto, bitcoin, casino, backlinks, seo services, guest post, viagra, loan offer">
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="f-row">
+          <input class="f-input" type="text" name="name" placeholder="Name" aria-label="Name" autocomplete="name" required>
+          <input class="f-input" type="email" name="email" placeholder="Email" aria-label="Email" autocomplete="email" required>
+        </div>
+        <textarea class="f-input" name="message" rows="4" placeholder="Message" aria-label="Message" required></textarea>
+        <div class="f-actions">
           <button class="btn btn-primary" type="submit">send message</button>
-        </form>
-      </div>
+          <p class="f-alt">or find me on <a href="https://www.linkedin.com/in/ronbajrami" target="_blank" rel="noopener">LinkedIn ↗</a></p>
+        </div>
+      </form>
     </section>
 
   </div>
@@ -720,10 +700,10 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 
 <!-- NOW PLAYING -->
 <aside class="nowbar glass" aria-label="Current status">
-  <span class="np-art"><img src="assets/fidelity.png" alt=""></span>
+  <span class="np-art mono" aria-hidden="true">rb</span>
   <span class="np-meta">
-    <span class="np-t">Software Engineer Associate</span>
-    <span class="np-s">Fidelity · starting July 2027</span>
+    <span class="np-t">Open to new grad roles</span>
+    <span class="np-s">Boston University · May 2027</span>
   </span>
   <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
   <a class="btn btn-primary" href="https://www.linkedin.com/in/ronbajrami" target="_blank" rel="noopener">
