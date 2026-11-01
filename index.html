@@ -19,6 +19,15 @@
   --fill-2:rgba(255,255,255,.13);
   --accent:#3d9bff;
   --accent-soft:rgba(61,155,255,.16);
+  --text-body:rgba(255,255,255,.88);
+  /* type scale: everything on the page uses one of these */
+  --fs-caption:13px;
+  --fs-small:14px;
+  --fs-ui:15px;
+  --fs-body:16px;
+  --fs-lead:17px;
+  /* containers share one radius; nested corners = outer radius - padding */
+  --r-box:24px;
   --ease:cubic-bezier(.32,.72,0,1);
   --font:-apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --gutter:24px;
@@ -91,14 +100,14 @@ img{display:block}
 }
 .nav-links{display:flex;gap:2px}
 .nav-links a{
-  font-size:14px;font-weight:600;color:var(--text-2);text-decoration:none;
+  font-size:var(--fs-small);font-weight:600;color:var(--text-2);text-decoration:none;
   padding:7px 13px;border-radius:999px;transition:color .2s, background .2s;
 }
 .nav-links a:hover{color:var(--text);background:var(--fill)}
 .nav-links a.active{color:var(--accent);background:var(--accent-soft)}
 @media (max-width:640px){
   .nav-links .opt{display:none}
-  .nav-links a{font-size:13.5px;padding:7px 11px}
+  .nav-links a{padding:7px 10px}
 }
 @media (max-width:340px){.nav .brand{display:none}}
 
@@ -125,21 +134,21 @@ img{display:block}
   background:linear-gradient(180deg, transparent, rgba(0,0,0,.75) 70%, #000);
 }
 .hero-inner{width:100%;padding-bottom:clamp(48px, 9vh, 88px)}
-.kicker{font-size:15px;font-weight:600;color:var(--text-2);margin-bottom:14px}
+.kicker{font-size:var(--fs-ui);font-weight:600;color:var(--text-2);margin-bottom:16px}
 .wordmark{
   font-size:clamp(76px, 17vw, 200px);font-weight:800;line-height:.84;
   letter-spacing:-.065em;text-transform:lowercase;margin-left:-.05em;
 }
 .wordmark span{display:block}
-.lede{margin-top:26px;max-width:600px;font-size:clamp(17px, 2vw, 21px);line-height:1.45;color:var(--text-2)}
+.lede{margin-top:24px;max-width:600px;font-size:clamp(17px, 2vw, 21px);line-height:1.45;color:var(--text-2)}
 .lede strong{color:var(--text);font-weight:600}
-.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
 
 /* ---------- buttons ---------- */
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:8px;
   height:46px;padding:0 22px;border-radius:999px;border:0;cursor:pointer;
-  font:600 15px/1 var(--font);color:var(--text);text-decoration:none;white-space:nowrap;
+  font:600 var(--fs-ui)/1 var(--font);color:var(--text);text-decoration:none;white-space:nowrap;
   transition:transform .3s var(--ease), background .2s, box-shadow .3s var(--ease);
 }
 .btn svg{flex:none}
@@ -147,15 +156,17 @@ img{display:block}
 .btn-primary:hover{background:rgba(255,255,255,.86)}
 .btn-glass:hover{box-shadow:var(--glass-shadow), 0 0 32px rgba(255,255,255,.08)}
 .btn:active{transform:scale(.97)}
+.btn-sm{height:42px;padding:0 18px;font-size:var(--fs-small)}
+.arrow{flex:none;vertical-align:-1px}
 
 /* ---------- sections ---------- */
 .section{padding-top:clamp(64px, 9vw, 104px);scroll-margin-top:72px}
-.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:26px}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:24px}
 .sec-head h2{
   font-size:clamp(40px, 6vw, 68px);font-weight:800;line-height:.92;
   letter-spacing:-.05em;text-transform:lowercase;
 }
-.sec-head .aside{font-size:14px;color:var(--text-3);padding-bottom:4px;white-space:nowrap}
+.sec-head .aside{font-size:var(--fs-small);color:var(--text-3);padding-bottom:4px;white-space:nowrap}
 .sec-head a.aside{color:var(--accent);text-decoration:none;font-weight:600}
 .sec-head a.aside:hover{text-decoration:underline}
 @media (max-width:480px){.sec-head span.aside{display:none}}
@@ -168,8 +179,10 @@ img{display:block}
 
 .tile{display:flex;flex-direction:column}
 .card{
-  flex:1;display:block;width:100%;text-align:left;font:inherit;color:inherit;border:0;cursor:pointer;
-  padding:10px 10px 16px;border-radius:24px;
+  /* flex column so content stays pinned to the top when the card stretches to its row */
+  flex:1;display:flex;flex-direction:column;justify-content:flex-start;width:100%;text-align:left;font:inherit;color:inherit;border:0;cursor:pointer;
+  --pad:12px;
+  padding:var(--pad) var(--pad) 16px;border-radius:var(--r-box);
   transition:transform .45s var(--ease), box-shadow .45s var(--ease);
 }
 .card::after{
@@ -187,21 +200,21 @@ img{display:block}
 }
 .card:active{transform:scale(.98)}
 .card:focus-visible{outline-offset:4px}
-.c-title{display:block;margin:13px 6px 0;font-size:16px;font-weight:700;letter-spacing:-.02em;line-height:1.25}
-.c-sub{display:block;margin:3px 6px 0;font-size:14px;color:var(--text-2);line-height:1.35}
-.c-date{display:block;margin:7px 6px 0;font-size:12.5px;color:var(--text-3);font-variant-numeric:tabular-nums}
+.c-title{display:block;margin:12px 4px 0;font-size:var(--fs-body);font-weight:700;letter-spacing:-.015em;line-height:1.25}
+.c-sub{display:block;margin:2px 4px 0;font-size:var(--fs-small);color:var(--text-2);line-height:1.4}
+.c-date{display:block;margin:8px 4px 0;font-size:var(--fs-caption);color:var(--text-3);font-variant-numeric:tabular-nums}
 @media (max-width:600px){
-  .card{padding:8px 8px 13px;border-radius:20px}
-  .c-title{font-size:15px;margin:11px 4px 0}
-  .c-sub{font-size:13px;margin:2px 4px 0}
-  .c-date{font-size:12px;margin:6px 4px 0}
+  .card{--pad:8px;padding-bottom:12px;border-radius:20px}
+  .c-title{font-size:var(--fs-ui);margin-top:10px}
+  .c-sub{font-size:var(--fs-caption)}
+  .c-date{font-size:12px;margin-top:6px}
 }
 
 /* cover art: grayscale light studies, sized in container units so the
    same markup scales up cleanly when it moves into the sheet */
 .art{
   position:relative;display:block;overflow:hidden;isolation:isolate;
-  aspect-ratio:1;border-radius:15px;background:#0d0d0d;
+  aspect-ratio:1;border-radius:12px;background:#0d0d0d;
   container-type:inline-size;
 }
 .art.wide{aspect-ratio:2/1}
@@ -258,23 +271,24 @@ img{display:block}
 .detail[hidden]{display:none}
 
 /* ---------- panels (education, skills, contact) ---------- */
-.panel{border-radius:28px;padding:clamp(22px, 3.4vw, 36px)}
+.panel{border-radius:var(--r-box);padding:clamp(20px, 3.2vw, 32px)}
 .panel-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
-.panel h3{font-size:clamp(22px, 2.6vw, 28px);font-weight:800;letter-spacing:-.035em;line-height:1.1}
-.panel .p-sub{font-size:16px;color:var(--text-2);margin-top:6px}
-.panel .p-when{font-size:14px;font-weight:600;color:var(--text-2);background:var(--fill);border-radius:999px;padding:6px 14px;white-space:nowrap}
+.panel h3{font-size:clamp(22px, 2.6vw, 28px);font-weight:800;letter-spacing:-.03em;line-height:1.1}
+.panel .p-sub{font-size:var(--fs-body);color:var(--text-2);margin-top:4px}
+.panel .p-when{font-size:var(--fs-small);font-weight:600;color:var(--text-2);background:var(--fill);border-radius:999px;padding:6px 14px;white-space:nowrap}
 .rows{margin-top:24px;border-top:1px solid var(--line)}
 .rows:first-child{margin-top:0;border-top:0}
-.row{display:grid;grid-template-columns:200px 1fr;gap:20px;padding:18px 0;border-bottom:1px solid var(--line)}
+/* baseline alignment keeps each label level with its row's first line, text or pills */
+.row{display:grid;grid-template-columns:200px 1fr;gap:20px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--line)}
 .row:last-child{border-bottom:0;padding-bottom:0}
 .rows:first-child .row:first-child{padding-top:0}
-.row dt{font-size:13px;font-weight:600;color:var(--text-3);padding-top:6px}
-.row dd{font-size:16px;line-height:1.55;color:rgba(255,255,255,.88)}
-@media (max-width:640px){.row{grid-template-columns:1fr;gap:8px}.row dt{padding-top:0}}
+.row dt{font-size:var(--fs-caption);font-weight:600;color:var(--text-3)}
+.row dd{font-size:var(--fs-body);line-height:1.55;color:var(--text-body)}
+@media (max-width:640px){.row{grid-template-columns:1fr;gap:8px}}
 
 .pills{display:flex;flex-wrap:wrap;gap:8px}
 .pill{
-  display:inline-block;font-size:14px;font-weight:600;line-height:1.2;
+  display:inline-block;font-size:var(--fs-small);font-weight:600;line-height:1.2;
   padding:7px 14px;border-radius:999px;background:var(--fill);
   box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);
   transition:background .2s;
@@ -282,23 +296,23 @@ img{display:block}
 .pill:hover{background:var(--fill-2)}
 
 /* ---------- contact ---------- */
-.c-form{display:flex;flex-direction:column;gap:10px;max-width:760px}
-.f-row{display:flex;gap:10px}
+.c-form{display:flex;flex-direction:column;gap:12px;max-width:760px}
+.f-row{display:flex;gap:12px}
 @media (max-width:520px){.f-row{flex-direction:column}}
 .f-input{
   width:100%;border:0;border-radius:16px;padding:14px 16px;
   background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);
-  font:16px/1.4 var(--font);color:var(--text);transition:box-shadow .2s, background .2s;
+  font:var(--fs-body)/1.4 var(--font);color:var(--text);transition:box-shadow .2s, background .2s;
 }
 .f-input::placeholder{color:var(--text-3)}
 .f-input:focus{outline:none;background:rgba(255,255,255,.09);box-shadow:inset 0 0 0 1.5px var(--accent)}
 textarea.f-input{resize:vertical;min-height:132px}
 .f-actions{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px 20px;margin-top:4px}
-.f-alt{font-size:14px;color:var(--text-3)}
-.f-alt a{color:var(--accent);font-weight:600;text-decoration:none}
+.f-alt{font-size:var(--fs-small);color:var(--text-3)}
+.f-alt a{display:inline-flex;align-items:center;gap:6px;color:var(--accent);font-weight:600;text-decoration:none}
 .f-alt a:hover{text-decoration:underline}
 
-footer{margin-top:clamp(64px, 9vw, 104px);padding:20px 0;border-top:1px solid var(--line);color:var(--text-3);font-size:13px}
+footer{margin-top:clamp(64px, 9vw, 104px);padding:20px 0;border-top:1px solid var(--line);color:var(--text-3);font-size:var(--fs-caption)}
 footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 
 /* ---------- now playing bar ---------- */
@@ -306,14 +320,14 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
   position:fixed;z-index:60;left:0;right:0;margin:0 auto;
   bottom:calc(12px + env(safe-area-inset-bottom));
   width:min(700px, calc(100% - 2 * var(--gutter)));
-  display:flex;align-items:center;gap:12px;padding:8px;border-radius:24px;
+  display:flex;align-items:center;gap:12px;padding:8px;border-radius:var(--r-box);
 }
-.np-art{flex:none;width:48px;height:48px;border-radius:13px;background:#fff;display:grid;place-items:center;box-shadow:0 4px 14px rgba(0,0,0,.4)}
-.np-art.mono{color:#000;font-size:19px;font-weight:800;letter-spacing:-.06em;padding-bottom:2px}
+.np-art{flex:none;width:48px;height:48px;border-radius:16px;background:#fff;display:grid;place-items:center;box-shadow:0 4px 14px rgba(0,0,0,.4)}
+.np-art.mono{color:#000;font-size:18px;font-weight:800;letter-spacing:-.05em;padding-bottom:2px}
 .np-meta{flex:1;min-width:0;display:flex;flex-direction:column}
 .np-t,.np-s{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.np-t{font-size:15px;font-weight:700;letter-spacing:-.015em}
-.np-s{font-size:13px;color:var(--text-2)}
+.np-t{font-size:var(--fs-ui);font-weight:700;letter-spacing:-.015em}
+.np-s{font-size:var(--fs-caption);color:var(--text-2)}
 .eq{flex:none;display:flex;align-items:flex-end;gap:3px;height:16px;margin-right:4px}
 .eq i{width:3px;height:100%;border-radius:2px;background:var(--accent);transform-origin:bottom;animation:eq 1.3s ease-in-out infinite}
 .eq i:nth-child(1){animation-delay:-.2s}
@@ -321,13 +335,10 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .eq i:nth-child(3){animation-delay:-.4s}
 .eq i:nth-child(4){animation-delay:-1s}
 @keyframes eq{0%,100%{transform:scaleY(.35)}50%{transform:scaleY(1)}}
-.nowbar .btn{height:42px;padding:0 18px;font-size:14px}
 @media (max-width:440px){
   .eq{display:none}
-  .nowbar{gap:10px}
   .np-art{width:44px;height:44px}
-  .np-t{font-size:14.5px}
-  .nowbar .btn{padding:0 14px;font-size:13.5px}
+  .nowbar .btn{padding:0 16px}
   .nowbar .btn svg{display:none}
 }
 
@@ -370,23 +381,23 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .sheet-x:hover{background:var(--fill-2);color:var(--text)}
 .sheet-head{display:grid;grid-template-columns:minmax(0, 300px) minmax(0, 1fr);gap:clamp(24px, 4vw, 44px);align-items:end}
 .sheet-head.is-wide{grid-template-columns:minmax(0, 1fr)}
-.sheet-art-slot .art{width:100%;border-radius:22px;transform-origin:0 0;box-shadow:0 30px 70px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.08)}
+.sheet-art-slot .art{width:100%;border-radius:20px;transform-origin:0 0;box-shadow:0 30px 70px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.08)}
 .sheet-art-slot .chip img{filter:none}
-.sheet-kicker{font-size:13px;font-weight:600;color:var(--text-3);margin-bottom:8px}
-.sheet-meta h2{font-size:clamp(32px, 4.6vw, 52px);font-weight:800;line-height:1;letter-spacing:-.045em}
-.sheet-role{margin-top:10px;font-size:clamp(17px, 2vw, 20px);font-weight:600;color:var(--text-2)}
-.sheet-when{margin-top:8px;font-size:14px;color:var(--text-3)}
+.sheet-kicker{font-size:var(--fs-caption);font-weight:600;color:var(--text-3);margin-bottom:8px}
+.sheet-meta h2{font-size:clamp(32px, 4.6vw, 52px);font-weight:800;line-height:1;letter-spacing:-.05em}
+.sheet-role{margin-top:8px;font-size:clamp(17px, 2vw, 20px);font-weight:600;color:var(--text-2)}
+.sheet-when{margin-top:6px;font-size:var(--fs-small);color:var(--text-3)}
 .sheet-when:empty{display:none}
-.sheet-body{margin-top:34px;padding-top:30px;border-top:1px solid var(--line)}
+.sheet-body{margin-top:32px;padding-top:32px;border-top:1px solid var(--line)}
 .bullets{list-style:none;display:grid;gap:16px}
-.bullets li{position:relative;padding-left:24px;font-size:17px;line-height:1.55;color:rgba(255,255,255,.88)}
-.bullets li::before{content:"";position:absolute;left:3px;top:.62em;width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.4)}
-.sheet-body .pills{margin-top:30px}
-.sheet-body .pill{font-size:13px;padding:6px 13px}
-.d-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.bullets li{position:relative;padding-left:24px;font-size:var(--fs-lead);line-height:1.55;color:var(--text-body)}
+/* dot sits on the middle of the first line */
+.bullets li::before{content:"";position:absolute;left:3px;top:calc(.775em - 3.5px);width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.4)}
+.sheet-body .pills{margin-top:32px}
+.d-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
 .d-links a{
   display:inline-flex;align-items:center;gap:8px;height:42px;padding:0 18px;border-radius:999px;text-decoration:none;
-  font-size:14px;font-weight:600;color:var(--accent);background:var(--accent-soft);transition:background .2s;
+  font-size:var(--fs-small);font-weight:600;color:var(--accent);background:var(--accent-soft);transition:background .2s;
 }
 .d-links a:hover{background:rgba(61,155,255,.26)}
 @media (max-width:700px){
@@ -394,7 +405,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
   .sheet-scroll{padding-top:44px}
   .sheet-x{display:none}
   .sheet-head{grid-template-columns:minmax(0, 1fr);gap:24px}
-  .bullets li{font-size:16px}
+  .bullets li{font-size:var(--fs-body)}
 }
 </style>
 <noscript><style>.detail[hidden]{display:block;padding:14px 6px 4px}.nav-links .opt{display:inline}</style></noscript>
@@ -428,7 +439,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
         <a class="btn btn-primary" href="#experience">view experience</a>
         <a class="btn btn-glass glass" href="https://www.linkedin.com/in/ronbajrami" target="_blank" rel="noopener">
           linkedin
-          <svg width="13" height="13" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3.5 8.5l5-5M4.5 3.5h4v4"/></svg>
+          <svg class="arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M3.5 8.5l5-5M4.5 3.5h4v4"/></svg>
         </a>
       </div>
     </div>
@@ -511,7 +522,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
               <span class="pill">iOS</span><span class="pill">Python</span><span class="pill">Poisson Model</span><span class="pill">Backtesting</span>
             </div>
             <div class="d-links">
-              <a href="https://apps.apple.com/us/app/wynr/id6757320926" target="_blank" rel="noopener">apps.apple.com/us/app/wynr <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3.5 8.5l5-5M4.5 3.5h4v4"/></svg></a>
+              <a href="https://apps.apple.com/us/app/wynr/id6757320926" target="_blank" rel="noopener">apps.apple.com/us/app/wynr <svg class="arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M3.5 8.5l5-5M4.5 3.5h4v4"/></svg></a>
             </div>
           </div>
         </article>
@@ -571,7 +582,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
               <span class="pill">Python</span><span class="pill">H3</span><span class="pill">ArcGIS</span><span class="pill">Shapely</span><span class="pill">Next.js</span><span class="pill">deck.gl</span><span class="pill">Amazon Bedrock</span>
             </div>
             <div class="d-links">
-              <a href="https://atlasappai.vercel.app" target="_blank" rel="noopener">atlasappai.vercel.app <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3.5 8.5l5-5M4.5 3.5h4v4"/></svg></a>
+              <a href="https://atlasappai.vercel.app" target="_blank" rel="noopener">atlasappai.vercel.app <svg class="arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M3.5 8.5l5-5M4.5 3.5h4v4"/></svg></a>
             </div>
           </div>
         </article>
@@ -585,7 +596,8 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
               <span class="mark">dua gelato</span>
             </span>
             <span class="c-title">Dua Gelato</span>
-            <span class="c-sub">duagelato.com</span>
+            <span class="c-sub">Client Website</span>
+            <span class="c-date">duagelato.com</span>
           </button>
           <div class="detail" hidden>
             <ul class="bullets">
@@ -596,7 +608,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
               <span class="pill">React</span><span class="pill">Express</span><span class="pill">MongoDB</span><span class="pill">Webhooks</span>
             </div>
             <div class="d-links">
-              <a href="https://duagelato.com" target="_blank" rel="noopener">duagelato.com <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3.5 8.5l5-5M4.5 3.5h4v4"/></svg></a>
+              <a href="https://duagelato.com" target="_blank" rel="noopener">duagelato.com <svg class="arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M3.5 8.5l5-5M4.5 3.5h4v4"/></svg></a>
             </div>
           </div>
         </article>
@@ -677,13 +689,13 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
         <input type="hidden" name="_blacklist" value="crypto, bitcoin, casino, backlinks, seo services, guest post, viagra, loan offer">
         <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="f-row">
-          <input class="f-input" type="text" name="name" placeholder="Name" aria-label="Name" autocomplete="name" required>
-          <input class="f-input" type="email" name="email" placeholder="Email" aria-label="Email" autocomplete="email" required>
+          <input class="f-input" type="text" name="name" placeholder="name" aria-label="Name" autocomplete="name" required>
+          <input class="f-input" type="email" name="email" placeholder="email" aria-label="Email" autocomplete="email" required>
         </div>
-        <textarea class="f-input" name="message" rows="4" placeholder="Message" aria-label="Message" required></textarea>
+        <textarea class="f-input" name="message" rows="4" placeholder="message" aria-label="Message" required></textarea>
         <div class="f-actions">
           <button class="btn btn-primary" type="submit">send message</button>
-          <p class="f-alt">or find me on <a href="https://www.linkedin.com/in/ronbajrami" target="_blank" rel="noopener">LinkedIn ↗</a></p>
+          <p class="f-alt">or find me on <a href="https://www.linkedin.com/in/ronbajrami" target="_blank" rel="noopener">linkedin <svg class="arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M3.5 8.5l5-5M4.5 3.5h4v4"/></svg></a></p>
         </div>
       </form>
     </section>
@@ -694,7 +706,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 <footer>
   <div class="wrap">
     <div>© 2026 Ron Bajrami</div>
-    <div>Boston, Massachusetts</div>
+    <div>Boston, MA</div>
   </div>
 </footer>
 
@@ -706,9 +718,9 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
     <span class="np-s">Boston University · May 2027</span>
   </span>
   <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-  <a class="btn btn-primary" href="https://www.linkedin.com/in/ronbajrami" target="_blank" rel="noopener">
+  <a class="btn btn-primary btn-sm" href="https://www.linkedin.com/in/ronbajrami" target="_blank" rel="noopener">
     linkedin
-    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M3.5 8.5l5-5M4.5 3.5h4v4"/></svg>
+    <svg class="arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M3.5 8.5l5-5M4.5 3.5h4v4"/></svg>
   </a>
 </aside>
 
