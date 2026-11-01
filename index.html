@@ -338,8 +338,15 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 @media (max-width:440px){
   .eq{display:none}
   .np-art{width:44px;height:44px}
+  /* the status line is too long for one line on phones, so let it wrap */
+  .np-t{white-space:normal;line-height:1.25;margin-bottom:2px}
   .nowbar .btn{padding:0 16px}
   .nowbar .btn svg{display:none}
+}
+@media (max-width:360px){
+  .np-art{display:none}
+  .nowbar{padding-left:16px}
+  .nowbar .btn{padding:0 14px}
 }
 
 /* ---------- sheet (now playing style detail view) ---------- */
@@ -714,7 +721,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 <aside class="nowbar glass" aria-label="Current status">
   <span class="np-art mono" aria-hidden="true">rb</span>
   <span class="np-meta">
-    <span class="np-t">Open to new grad roles</span>
+    <span class="np-t">Open to new grad roles, internships &amp; co-ops</span>
     <span class="np-s">Boston University · May 2027</span>
   </span>
   <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
